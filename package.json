@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run lint && node-sass scss/index.scss css/style.css --output-style compressed",
+    "build": "npm run lint && node-sass scss/index.scss public/style.css --output-style compressed",
     "lint": "stylelint 'scss/**/*.scss' --config .stylelintrc --syntax scss",
     "start": "npm run build -- -w --source-map true",
     "precommit": "npm run lint"
