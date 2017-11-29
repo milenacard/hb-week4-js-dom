@@ -5,17 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Gallery</title>
-    <link rel="stylesheet" href="/..public/style.css">
+    <link rel="stylesheet" href="../../public/style.css">
 </head>
 <body>
-    <img class="mySlider" src="img/autumn-season.jpg">
-    <img class="mySlider" src="img/flower.jpeg">
-    <img class="mySlider" src="img/hot-air-balloon.jpg">
-    <img class="mySlider" src="img/marguerite.jpg">
-    <img class="mySlider" src="img/pexels-flowers.jpeg">
-    <img class="mySlider" src="img/pexels-photo.jpeg">
-    <button class="button-display-left" onclick="plusDivs(-1)">&#10094;</button>
-    <button class="button-display-right" onclick="plusDivs(+1)">&#10095;</button>
-    <script src="js/script.js"></script>
+	<div class="container">
+		<section class="gallery">
+			<ul class="gallery-list">
+				<li>
+					<img class="mySlider" src="img/autumn-season.jpg">
+				</li>
+				<li>
+					<img class="mySlider" src="img/flower.jpeg">
+				</li>
+				<li>
+					<img class="mySlider" src="img/hot-air-balloon.jpg">
+				</li>
+				<li>
+					<img class="mySlider" src="img/marguerite.jpg">
+				</li>
+				<li>
+					<img class="mySlider" src="img/pexels-flowers.jpeg">
+				</li>
+				<li>
+					<img class="mySlider" src="img/pexels-photo.jpeg">
+				</li>
+			</ul>
+			<div class="button-display"> 
+					<button class="button-display-left" onclick="plusDivs(-1)">&#10094;</button>
+					<button class="button-display-right" onclick="plusDivs(+1)">&#10095;</button>	
+			</div>
+		</section>
+		<section class="dots">
+
+		</section>
+	</div>
+	<script src="script.js"></script>
 </body>
 </html>
