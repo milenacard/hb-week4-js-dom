@@ -1,7 +1,8 @@
 {
   "name": "hb-week4-js-dom",
   "version": "1.0.0",
-  "description": "",
+  "description": "This exercise will help you to understand how you can interact with the DOM API using Javascript to acomplish different common tasks in a user interface.",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "build": "npm run lint && node-sass src/index.scss public/style.css --output-style compressed",
