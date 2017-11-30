@@ -65,16 +65,10 @@
 	align-items: center;
 	justify-content: center;
 }
-/*
-.gallery__dots-list{
-
-}
-*/
 
 .gallery__dot-item{
 	list-style-type: none;
 }
-
 
 .gallery__dot-button{
 	height: 20px;
@@ -84,5 +78,4 @@
 	background-color: white;
 	transition: backgroud-color .3s;
 	cursor: pointer;
-	
 }

@@ -1,18 +1,18 @@
 
  var slideIndex = 0;
- showDivs(slideIndex);
+ showImages(slideIndex);
 
  const button_left = document.querySelector(".gallery__button--left");
  button_left.addEventListener('click', function(){
-   showDivs(slideIndex -1);
+  showImages(slideIndex -1);
  });
 
  const button_right = document.querySelector(".gallery__button--right");
  button_right.addEventListener('click', function(){
-   showDivs(slideIndex + 1);
+  showImages(slideIndex + 1);
  });
 
-function showDivs(index) {
+function showImages(index) {
   var i;
   const slides = document.querySelectorAll(".gallery__list-item");
   const isPositive = index >= 0;
