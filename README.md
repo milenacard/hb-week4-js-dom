@@ -1,4 +1,10 @@
 # hb-week4-js-dom
+How to run this example
+
+Use `npm start` to serve the application in a development environment.
+Use `npm run build` to create a distributable version of the app.
+Use `npm run lint` to run the SASS and JS linters.
+
 
 This exercise will help you to understand how you can interact with the DOM API using Javascript to acomplish different common tasks in a user interface.
 
