@@ -4,41 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Gallery</title>
+		<title>My Gallery</title>
+		<link rel="stylesheet" href="../../icon/icon.css">
     <link rel="stylesheet" href="../../public/style.css">
 </head>
 <body>
 	<div class="container">
 		<section class="gallery">
-			<ul class="gallery-list">
-				<li>
-					<img class="mySlider" src="img/autumn-season.jpg">
+			<ul class="gallery__list">
+				<li class="gallery__list-item">
+					<img class="gallery__image gallery__image--selected" src="img/autumn-season.jpg">
 				</li>
-				<li>
-					<img class="mySlider" src="img/flower.jpeg">
+				<li class="gallery__list-item">
+					<img class="gallery__image" src="img/flower.jpeg">
 				</li>
-				<li>
-					<img class="mySlider" src="img/hot-air-balloon.jpg">
+				<li class="gallery__list-item">
+					<img class="gallery__image" src="img/hot-air-balloon.jpg">
 				</li>
-				<li>
-					<img class="mySlider" src="img/marguerite.jpg">
+				<li class="gallery__list-item">
+					<img class="gallery__image" src="img/marguerite.jpg">
 				</li>
-				<li>
-					<img class="mySlider" src="img/pexels-flowers.jpeg">
+				<li class="gallery__list-item">
+					<img class="gallery__image" src="img/pexels-flowers.jpeg">
 				</li>
-				<li>
-					<img class="mySlider" src="img/pexels-photo.jpeg">
+				<li class="gallery__list-item">
+					<img class="gallery__image" src="img/pexels-photo.jpeg">
 				</li>
 			</ul>
-			<div class="button-display"> 
-					<button class="button-display-left" onclick="plusDivs(-1)">&#10094;</button>
-					<button class="button-display-right" onclick="plusDivs(+1)">&#10095;</button>	
+			<div class="gallery__button-container"> 
+				<button class="gallery__button gallery__button--left"><span ></span>&#10094;</button>
+				<button class="gallery__button gallery__button--right"><span></span>&#10095;</button>	
 			</div>
 		</section>
 		<section class="dots">
 
 		</section>
 	</div>
-	<script src="script.js"></script>
+	<script src="gallery.js"></script>
 </body>
 </html>
