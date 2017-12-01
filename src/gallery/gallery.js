@@ -1,14 +1,17 @@
 
- var slideIndex = 0;
+ let slideIndex = 0;
+ const button_arrow_left = document.querySelector(".gallery__button--left");
+ const button_arrow_right = document.querySelector(".gallery__button--right");
+ const button_dot = document.querySelector(".gallery__dot-button");
+ 
+ 
  showImages(slideIndex);
 
- const button_left = document.querySelector(".gallery__button--left");
- button_left.addEventListener('click', function(){
+ button_arrow_left.addEventListener('click', function(){
   showImages(slideIndex -1);
  });
 
- const button_right = document.querySelector(".gallery__button--right");
- button_right.addEventListener('click', function(){
+ button_arrow_right.addEventListener('click', function(){
   showImages(slideIndex + 1);
  });
 
@@ -24,5 +27,9 @@ function showImages(index) {
   slideIndex = index;
   slides[slideIndex].classList.add("gallery__list-item--selected");
   }
+}
+
+function dots(){
+  const buttons_dots = document.querySelectorAll("gallery__dot-item");
 }
 
