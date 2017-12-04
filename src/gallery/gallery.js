@@ -1,7 +1,7 @@
 
  let slideIndex = 0;
  const slides = document.querySelectorAll(".gallery__list-item"); 
- const buttons_dots = document.querySelectorAll("gallery__dot-item");
+ const buttons_dots = document.querySelectorAll(".gallery__dot-item");
  const button_arrow_left = document.querySelector(".gallery__button--left");
  const button_arrow_right = document.querySelector(".gallery__button--right");
 
@@ -42,10 +42,10 @@ function showImages(index) {
   if (isPositive && isLessThanLength && isDifferentThanCurrent) {
   slides[slideIndex].classList.remove("gallery__list-item--selected");
 
-  //buttons_dots[index].classList.remove("gallery__dot-button--selected");
+  buttons_dots[slideIndex].classList.remove("gallery__dot-item--selected");
   slideIndex = index;
 
-  //buttons_dots[index].classList.add("gallery__dot-button--selected");
+  buttons_dots[index].classList.add("gallery__dot-item--selected");
   slides[slideIndex].classList.add("gallery__list-item--selected");
   }
 }
