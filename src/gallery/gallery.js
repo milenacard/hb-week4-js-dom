@@ -2,11 +2,10 @@
  let slideIndex = 0;
  const slides = document.querySelectorAll(".gallery__list-item"); 
  const buttons_dots = document.querySelectorAll(".gallery__dot-item");
+ const button_dot = document.querySelector(".gallery__dots-list");
  const button_arrow_left = document.querySelector(".gallery__button--left");
  const button_arrow_right = document.querySelector(".gallery__button--right");
-
- const button_dot = document.querySelector(".gallery__dot-button");
-
+ 
  showImages(slideIndex);
 
  button_arrow_left.addEventListener('click', function(){
@@ -17,9 +16,13 @@
   showImages(slideIndex + 1);
  });
 
-button_dot.addEventListener('click', function(){
-  showImages();
-});
+ button_dot.addEventListener('click', function(e) {
+  const clickedElement = e.target
+  if (clickedElement.classList.contains('gallery__dot-button')) {
+    showImages(Number(clickedElement.dataset.index));
+  }
+ });
+
 
 function showImages(index) {
   var i;
@@ -46,13 +49,14 @@ function showImages(index) {
   slideIndex = index;
 
   buttons_dots[index].classList.add("gallery__dot-item--selected");
+  buttons_dots[index].focus();
   slides[slideIndex].classList.add("gallery__list-item--selected");
   }
 }
 
-
-function dots(){
-  
-}
+/*
+- Me falta con el teclado
+- Me falta el onclik de los selectores
+*/
 
 
