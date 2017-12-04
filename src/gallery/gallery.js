@@ -1,62 +1,72 @@
 
  let slideIndex = 0;
+ const node = document.querySelector('.gallery');
  const slides = document.querySelectorAll(".gallery__list-item"); 
- const buttons_dots = document.querySelectorAll(".gallery__dot-item");
- const button_dot = document.querySelector(".gallery__dots-list");
- const button_arrow_left = document.querySelector(".gallery__button--left");
- const button_arrow_right = document.querySelector(".gallery__button--right");
+ const buttonsDots = document.querySelectorAll(".gallery__dot-item");
+ const buttonDot = document.querySelector(".gallery__dots-list");
+ const buttonArrowLeft = document.querySelector(".gallery__button--left");
+ const buttonArrowRight = document.querySelector(".gallery__button--right");
  
- showImages(slideIndex);
+showImages(slideIndex);
+node.tabIndex = 0;
+ 
+node.addEventListener('keydown', function(event){
+  const k = event.key;
+  keydownHandler(k);
+});
 
- button_arrow_left.addEventListener('click', function(){
+buttonArrowLeft.addEventListener('click', function(){
   showImages(slideIndex -1);
- });
+});
 
- button_arrow_right.addEventListener('click', function(){
+buttonArrowRight.addEventListener('click', function(){
   showImages(slideIndex + 1);
- });
+});
 
- button_dot.addEventListener('click', function(e) {
-  const clickedElement = e.target
+buttonDot.addEventListener('click', function(event) {
+  const clickedElement = event.target;
   if (clickedElement.classList.contains('gallery__dot-button')) {
     showImages(Number(clickedElement.dataset.index));
   }
- });
-
+});
 
 function showImages(index) {
   var i;
   const isPositive = index >= 0;
   const isLessThanLength = index < slides.length;
   const isDifferentThanCurrent = index !== slideIndex;
+  const isfirst = index === 0;
+  const isLast = index === slides.length - 1;
 
-  if(index + 1 == slides.length){
-    button_arrow_right.setAttribute('disabled','');
-  }else{
-    button_arrow_right.removeAttribute('disabled');
+  buttonArrowLeft.classList.remove("gallery__button--arrowDisable");
+  buttonArrowRight.classList.remove("gallery__button--arrowDisable");
+
+  if(isfirst){
+    buttonArrowLeft.classList.add("gallery__button--arrowDisable");
   }
-
-  if(index == 0){
-    button_arrow_left.setAttribute('disabled','');
-  }else{
-    button_arrow_left.removeAttribute('disabled');
+  if(isLast){
+    buttonArrowRight.classList.add("gallery__button--arrowDisable");
   }
   
   if (isPositive && isLessThanLength && isDifferentThanCurrent) {
   slides[slideIndex].classList.remove("gallery__list-item--selected");
-
-  buttons_dots[slideIndex].classList.remove("gallery__dot-item--selected");
+  buttonsDots[slideIndex].classList.remove("gallery__dot-item--selected");
   slideIndex = index;
 
-  buttons_dots[index].classList.add("gallery__dot-item--selected");
-  buttons_dots[index].focus();
+  buttonsDots[index].classList.add("gallery__dot-item--selected");
+  buttonsDots[index].focus();
   slides[slideIndex].classList.add("gallery__list-item--selected");
   }
 }
 
-/*
-- Me falta con el teclado
-- Me falta el onclik de los selectores
-*/
+function keydownHandler(key){
+  switch (key) {
+    case 'ArrowLeft': showImages(slideIndex -1);
+      break;
+    case 'ArrowRight': showImages(slideIndex + 1);
+      break;
+  }
+}
+
 
 

@@ -52,7 +52,12 @@
 		font-size: 60px;
 		background-color: #eeeded;
 	}
-
+	
+	&--arrowDisable{
+		pointer-events: none;
+		background-color: rgb(186, 178, 178);
+		opacity: 0.5;
+	}
 }
 
 .gallery__dots-list{
@@ -71,7 +76,7 @@
 .gallery__dot-item{
 	list-style-type: none;
 	width: 20px;
-    height: 20px;
+	height: 20px;
 	margin: 0 15px;
 	
 	&--selected{
