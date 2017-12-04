@@ -1,6 +1,6 @@
 
  let slideIndex = 0;
- const node = document.querySelector('.gallery');
+ const node = document.querySelector(".gallery");
  const slides = document.querySelectorAll(".gallery__list-item"); 
  const buttonsDots = document.querySelectorAll(".gallery__dot-item");
  const buttonDot = document.querySelector(".gallery__dots-list");
