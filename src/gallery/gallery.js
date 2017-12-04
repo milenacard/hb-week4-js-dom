@@ -16,6 +16,13 @@
   showImages(slideIndex + 1);
  });
 
+ button_dot.addEventListener('click', function(e) {
+  const clickedElement = e.target
+  if (clickedElement.classList.contains('gallery__dot-button')) {
+    showImages(Number(clickedElement.dataset.index));
+  }
+ });
+
 
 function showImages(index) {
   var i;
