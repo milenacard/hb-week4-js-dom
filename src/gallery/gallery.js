@@ -1,4 +1,4 @@
-import data from "galleryData.js"
+import data from './galleryData.js'
 
 console.log(data);
 /*
