@@ -1,6 +1,31 @@
 import data from './galleryData.js'
 
 console.log(data);
+
+let slideIndex = 0;
+const node = document.querySelector(".gallery");
+
+//TODO
+//recorrer los elementos del data
+//pintarlos en el HTML
+//devolver los elementos
+const images = data.map(imagesItemsHTML()).join('');
+console.log(images);
+//node.innerHTML = images;
+
+function imagesItemsHTML({url}){
+
+  return(
+    `<li class="gallery__list-item">
+    <img class="gallery__image" src="${url}"/>
+  </li>`
+  )
+}
+
+
+const imagesHTML = data.map(Gallery.toGalleryItemHTML).join('')
+this.elements.imagesContainer.innerHTML = imagesHTML
+this.elements.galleryItems = this.node.querySelectorAll('.gallery__image-container')
 /*
 
 export class Gallery{
@@ -12,8 +37,7 @@ export class Gallery{
 
 }*/
  
- let slideIndex = 0;
- const node = document.querySelector(".gallery");
+ 
  const slides = document.querySelectorAll(".gallery__list-item"); 
  const buttonsDots = document.querySelectorAll(".gallery__dot-item");
  const buttonDot = document.querySelector(".gallery__dots-list");
