@@ -1,4 +1,17 @@
+import data from "galleryData.js"
 
+console.log(data);
+/*
+
+export class Gallery{
+  
+  Gallery(node, data){
+    this.node = node;
+    this.index = 0;
+  }
+
+}*/
+ 
  let slideIndex = 0;
  const node = document.querySelector(".gallery");
  const slides = document.querySelectorAll(".gallery__list-item"); 
@@ -7,6 +20,28 @@
  const buttonArrowLeft = document.querySelector(".gallery__button--left");
  const buttonArrowRight = document.querySelector(".gallery__button--right");
  
+ function templates(){
+  return{
+    container:(
+      `<ul class="gallery__list"></ul>
+      <div class="gallery__button-container"> 
+        <button class="gallery__button gallery__button--left gallery__button--arrowDisable">&#10094;</button>
+        <button class="gallery__button gallery__button--right">&#10095;</button>	
+      </div>
+      <section class="gallery__dots-container">
+        <ul class="gallery__dots-list"></u>
+      </section>`
+    ),
+    dot:(
+      `<li class="gallery__dot-item gallery__dot-item--selected">
+        <button class="gallery__dot-button"  data-index="index"></button>
+      </li>`
+    )
+  }
+}
+
+node.innerHTML = templates().container;
+
 showImages(slideIndex);
 node.tabIndex = 0;
  
