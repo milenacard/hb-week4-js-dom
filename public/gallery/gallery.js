@@ -9,9 +9,6 @@ export class Gallery {
   }
 */
 
-// TODO
-// Funcionamiento del teclado - escuchador
-// Dots- pintarlos, inflarlos, escuchador
 var elements = {}
 window.elements = elements
 let slideIndex = 0
@@ -38,7 +35,6 @@ elements.dotContainer.innerHTML = dotsHTML
 elements.dot = elements.dotContainer.querySelector('.gallery__dot-button')
 elements.dot.classList.add('gallery__dot-button--selected')
 
-// indexShowImage(slideIndex)
 elements.dots = document.querySelectorAll('.gallery__dot-button')
 node.tabIndex = 0
 
@@ -74,12 +70,10 @@ function templates () {
   }
 }
 
-/*
 node.addEventListener('keydown', function (event) {
   const k = event.key
   keydownHandler(k)
 })
-*/
 
 elements.buttonArrowLeft.addEventListener('click', function () {
   indexShowImage(slideIndex - 1)
@@ -127,7 +121,6 @@ function disableArrow (index) {
   }
 }
 
-/*
 function keydownHandler (key) {
   switch (key) {
     case 'ArrowLeft': indexShowImage(slideIndex - 1)
@@ -136,48 +129,3 @@ function keydownHandler (key) {
       break
   }
 }
-*/
-/*
-
-const buttonsDots = document.querySelectorAll('.gallery__dot-item')
-const buttonDot = document.querySelector('.gallery__dots-list')
-
-node.addEventListener('keydown', function (event) {
-  const k = event.key
-  keydownHandler(k)
-})
-
-buttonDot.addEventListener('click', function (event) {
-  const clickedElement = event.target
-  if (clickedElement.classList.contains('gallery__dot-button')) {
-    showImages(Number(clickedElement.dataset.index))
-  }
-})
-
-function showImages (index) {
-  const isPositive = index >= 0
-  const isLessThanLength = index < slides.length
-  const isDifferentThanCurrent = index !== slideIndex
-  const isfirst = index === 0
-  const isLast = index === slides.length - 1
-
-  if (isPositive && isLessThanLength && isDifferentThanCurrent) {
-    slides[slideIndex].classList.remove('gallery__list-item--selected')
-    buttonsDots[slideIndex].classList.remove('gallery__dot-button--selected')
-    slideIndex = index
-
-    buttonsDots[index].classList.add('gallery__dot-button-selected')
-    buttonsDots[index].focus()
-    slides[slideIndex].classList.add('gallery__list-item--selected')
-  }
-}
-
-function keydownHandler (key) {
-  switch (key) {
-    case 'ArrowLeft': indexShowImage(slideIndex - 1)
-      break
-    case 'ArrowRight': indexShowImage(slideIndex + 1)
-      break
-  }
-}
-*/
