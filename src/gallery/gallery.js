@@ -30,14 +30,16 @@ elements.imageContainer.innerHTML = galleryHTML
 elements.galleryItem = document.querySelectorAll('.gallery__list-item')
 
 const dotHTML = (_, index) => {
-  return templates.dot.replace(`{index}`, index)
+  return templates().dot.replace(`{index}`, index)
 }
+
 const dotsHTML = Array.from(Array(elements.galleryItem.length)).map(dotHTML).join('')
 elements.dotContainer.innerHTML = dotsHTML
-elements.dots = elements.dotContainer.querySelectorAll('.gallery__dot-button')
-// elements.dots[index].classList.add('.gallery__dot-button--selected')
+elements.dot = elements.dotContainer.querySelector('.gallery__dot-button')
+elements.dot.classList.add('gallery__dot-button--selected')
 
-indexShowImage(slideIndex)
+// indexShowImage(slideIndex)
+elements.dots = document.querySelectorAll('.gallery__dot-button')
 node.tabIndex = 0
 
 function imagesItemsHTML ({url}, index) {
@@ -65,17 +67,19 @@ function templates () {
       </section>`
     ),
     dot: (
-      `<li class="gallery__dot-item gallery__dot-item--selected">
-        <button class="gallery__dot-button"  data-index="{index}"></button>
+      `<li class="gallery__dot-item">
+        <button class="gallery__dot-button" data-index="{index}"></button>
       </li>`
     )
   }
 }
 
+/*
 node.addEventListener('keydown', function (event) {
   const k = event.key
   keydownHandler(k)
 })
+*/
 
 elements.buttonArrowLeft.addEventListener('click', function () {
   indexShowImage(slideIndex - 1)
@@ -85,7 +89,7 @@ elements.buttonArrowRight.addEventListener('click', function () {
   indexShowImage(slideIndex + 1)
 })
 
-elements.buttonDot.addEventListener('click', function (event) {
+elements.dotContainer.addEventListener('click', function (event) {
   const clickedElement = event.target
   if (clickedElement.classList.contains('gallery__dot-button')) {
     indexShowImage(Number(clickedElement.dataset.index))
@@ -101,9 +105,10 @@ function indexShowImage (index) {
 
   if (isPositive && isLessThanLength && isDifferentThanCurrent) {
     elements.galleryItem[slideIndex].classList.remove('gallery__list-item--selected')
+    elements.dots[slideIndex].classList.remove('gallery__dot-button--selected')
     slideIndex = index
-    console.log(slideIndex)
     elements.galleryItem[slideIndex].classList.add('gallery__list-item--selected')
+    elements.dots[slideIndex].classList.add('gallery__dot-button--selected')
   }
 }
 
@@ -122,6 +127,7 @@ function disableArrow (index) {
   }
 }
 
+/*
 function keydownHandler (key) {
   switch (key) {
     case 'ArrowLeft': indexShowImage(slideIndex - 1)
@@ -130,7 +136,7 @@ function keydownHandler (key) {
       break
   }
 }
-
+*/
 /*
 
 const buttonsDots = document.querySelectorAll('.gallery__dot-item')
@@ -157,10 +163,10 @@ function showImages (index) {
 
   if (isPositive && isLessThanLength && isDifferentThanCurrent) {
     slides[slideIndex].classList.remove('gallery__list-item--selected')
-    buttonsDots[slideIndex].classList.remove('gallery__dot-item--selected')
+    buttonsDots[slideIndex].classList.remove('gallery__dot-button--selected')
     slideIndex = index
 
-    buttonsDots[index].classList.add('gallery__dot-item--selected')
+    buttonsDots[index].classList.add('gallery__dot-button-selected')
     buttonsDots[index].focus()
     slides[slideIndex].classList.add('gallery__list-item--selected')
   }
@@ -168,9 +174,9 @@ function showImages (index) {
 
 function keydownHandler (key) {
   switch (key) {
-    case 'ArrowLeft': showImages(slideIndex - 1)
+    case 'ArrowLeft': indexShowImage(slideIndex - 1)
       break
-    case 'ArrowRight': showImages(slideIndex + 1)
+    case 'ArrowRight': indexShowImage(slideIndex + 1)
       break
   }
 }
