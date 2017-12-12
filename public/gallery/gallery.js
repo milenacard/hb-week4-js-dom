@@ -1,7 +1,3 @@
-//import data from './galleryData.js'
-
-//console.log(data)
-
 export class Gallery {
   constructor (node, data) {
     this.node = node
@@ -9,14 +5,14 @@ export class Gallery {
     this.elements = {}
 
     this.setContainer()
-    this.setDots(data)
     this.setImage(data)
+    this.setDots(data)
     this.setEvents()
   }
 
-  static get states () {
-    return{
-      selectedClass = 'gallery__list-item--selected'
+  static get state () {
+    return {
+      imageSelected: 'gallery__list-item--selected'
     }
   }
 
@@ -42,7 +38,7 @@ export class Gallery {
 
   static imagesItemsHTML ({url}, index) {
     const selected = index === 0
-    ? selectedClass
+    ? Gallery.state.imageSelected
     : ''
 
     return (
@@ -55,85 +51,93 @@ export class Gallery {
   setContainer () {
     this.node.tabIndex = 0
     this.node.innerHTML = Gallery.templates.container
-    elements.imageContainer = document.querySelector('.gallery__list')
-    elements.buttonArrowLeft = document.querySelector('.gallery__button--left')
-    elements.buttonArrowRight = document.querySelector('.gallery__button--right')
-    elements.buttonsDots = document.querySelectorAll('.gallery__dot-item')
-    elements.dotContainer = document.querySelector('.gallery__dots-list')
+    this.elements.imageContainer = document.querySelector('.gallery__list')
+    this.elements.buttonArrowLeft = document.querySelector('.gallery__button--left')
+    this.elements.buttonArrowRight = document.querySelector('.gallery__button--right')
+    this.elements.buttonsDots = document.querySelectorAll('.gallery__dot-item')
+    this.elements.dotContainer = document.querySelector('.gallery__dots-list')
   }
 
-// const node = document.querySelector('.gallery')
   setImage (data) {
-    const galleryHTML = data.map(imagesItemsHTML).join('')
-    elements.imageContainer.innerHTML = galleryHTML
-    elements.galleryItem = document.querySelectorAll('.gallery__list-item')
-    elements.galleryItem[slideIndex].classList.remove('gallery__list-item--selected')
+    const galleryHTML = data.map(Gallery.imagesItemsHTML).join('')
+    this.elements.imageContainer.innerHTML = galleryHTML
+    this.elements.galleryItem = document.querySelectorAll('.gallery__list-item')
+    this.elements.galleryItem[this.slideIndex].classList.add(Gallery.state.imageSelected)
   }
 
   setDots (data) {
     const dotHTML = (_, index) => {
-      return templates().dot.replace(`{index}`, index)
+      return Gallery.templates.dot.replace(`{index}`, index)
     }
 
-    const dotsHTML = Array.from(Array(elements.galleryItem.length)).map(dotHTML).join('')
-    elements.dotContainer.innerHTML = dotsHTML
-    elements.dot = elements.dotContainer.querySelector('.gallery__dot-button')
-    elements.dot.classList.add('gallery__dot-button--selected')
-    elements.dots = document.querySelectorAll('.gallery__dot-button')
+    const dotsHTML = Array.from(Array(this.elements.galleryItem.length)).map(dotHTML).join('')
+    this.elements.dotContainer.innerHTML = dotsHTML
+    this.elements.dot = this.elements.dotContainer.querySelector('.gallery__dot-button')
+    this.elements.dot.classList.add('gallery__dot-button--selected')
+    this.elements.dots = document.querySelectorAll('.gallery__dot-button')
   }
 
   setEvents () {
-    this.elements.buttonArrowLeft.addEventListener('click', function () { indexShowImage(slideIndex - 1)})
-    this.elements.buttonArrowRight.addEventListener('click', function () {indexShowImage(slideIndex + 1)})
+    this.elements.buttonArrowLeft.addEventListener('click', this.goPrevious.bind(this))
+    this.elements.buttonArrowRight.addEventListener('click', this.goNext.bind(this))
     this.elements.dotContainer.addEventListener('click', this.dotTarget.bind(this))
     this.node.addEventListener('keydown', this.keydownHandler.bind(this))
   }
 
   indexShowImage (index) {
     const isPositive = index >= 0
-    const isLessThanLength = index < elements.galleryItem.length
-    const isDifferentThanCurrent = index !== slideIndex
+    const isLessThanLength = index < this.elements.galleryItem.length
+    const isDifferentThanCurrent = index !== this.slideIndex
 
-    disableArrow(index)
+    this.disableArrow(index)
 
     if (isPositive && isLessThanLength && isDifferentThanCurrent) {
-      elements.galleryItem[slideIndex].classList.remove('gallery__list-item--selected')
-      elements.dots[slideIndex].classList.remove('gallery__dot-button--selected')
-      slideIndex = index
-      elements.galleryItem[slideIndex].classList.add('gallery__list-item--selected')
-      elements.dots[slideIndex].classList.add('gallery__dot-button--selected')
+      this.elements.galleryItem[this.slideIndex].classList.remove(Gallery.state.imageSelected)
+      this.elements.dots[this.slideIndex].classList.remove('gallery__dot-button--selected')
+      this.slideIndex = index
+      this.elements.galleryItem[this.slideIndex].classList.add(Gallery.state.imageSelected)
+      this.elements.dots[this.slideIndex].classList.add('gallery__dot-button--selected')
     }
   }
 
   disableArrow (index) {
     const isfirst = index === 0
-    const isLast = index === elements.galleryItem.length - 1
+    const isLast = index === this.elements.galleryItem.length - 1
 
-    elements.buttonArrowLeft.classList.remove('gallery__button--arrowDisable')
-    elements.buttonArrowRight.classList.remove('gallery__button--arrowDisable')
+    this.elements.buttonArrowLeft.classList.remove('gallery__button--arrowDisable')
+    this.elements.buttonArrowRight.classList.remove('gallery__button--arrowDisable')
 
     if (isfirst) {
-      elements.buttonArrowLeft.classList.add('gallery__button--arrowDisable')
+      this.elements.buttonArrowLeft.classList.add('gallery__button--arrowDisable')
     }
     if (isLast) {
-      elements.buttonArrowRight.classList.add('gallery__button--arrowDisable')
+      this.elements.buttonArrowRight.classList.add('gallery__button--arrowDisable')
     }
+  }
+
+  goNext () {
+    this.indexShowImage(this.slideIndex + 1)
+  }
+
+  goPrevious () {
+    this.indexShowImage(this.slideIndex - 1)
   }
 
   dotTarget (event) {
     const clickedElement = event.target
     if (clickedElement.classList.contains('gallery__dot-button')) {
-      indexShowImage(Number(clickedElement.dataset.index))
+      this.indexShowImage(Number(clickedElement.dataset.index))
     }
   }
 
   keydownHandler (key) {
     switch (key) {
-      case 'ArrowLeft': indexShowImage(slideIndex - 1)
+      case 'ArrowLeft': this.goPrevious()
         break
-      case 'ArrowRight': indexShowImage(slideIndex + 1)
+      case 'ArrowRight': this.goNext()
         break
     }
   }
 }
 
+export default Gallery
