@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "serve": "http-server -c-1 --silent",
+    "serve": "http-server -c-1 --silence",
     "build": "npm-run-all clean lint:** --parallel build:css copy:**",
     "build:css": "node-sass src/index.scss public/style.css --output-style compressed",
     "lint": "npm-run-all lint:**",
