@@ -12,7 +12,9 @@ export class Gallery {
 
   static get state () {
     return {
-      imageSelected: 'gallery__list-item--selected'
+      imageSelected: 'gallery__list-item--selected',
+      dotSelected: 'gallery__dot-button--selected',
+      arrowDisable: 'gallery__button--arrowDisable'
     }
   }
 
@@ -73,7 +75,7 @@ export class Gallery {
     const dotsHTML = Array.from(Array(this.elements.galleryItem.length)).map(dotHTML).join('')
     this.elements.dotContainer.innerHTML = dotsHTML
     this.elements.dot = this.elements.dotContainer.querySelector('.gallery__dot-button')
-    this.elements.dot.classList.add('gallery__dot-button--selected')
+    this.elements.dot.classList.add(Gallery.state.dotSelected)
     this.elements.dots = document.querySelectorAll('.gallery__dot-button')
   }
 
@@ -93,10 +95,10 @@ export class Gallery {
 
     if (isPositive && isLessThanLength && isDifferentThanCurrent) {
       this.elements.galleryItem[this.slideIndex].classList.remove(Gallery.state.imageSelected)
-      this.elements.dots[this.slideIndex].classList.remove('gallery__dot-button--selected')
+      this.elements.dots[this.slideIndex].classList.remove(Gallery.state.dotSelected)
       this.slideIndex = index
       this.elements.galleryItem[this.slideIndex].classList.add(Gallery.state.imageSelected)
-      this.elements.dots[this.slideIndex].classList.add('gallery__dot-button--selected')
+      this.elements.dots[this.slideIndex].classList.add(Gallery.state.dotSelected)
     }
   }
 
@@ -104,14 +106,14 @@ export class Gallery {
     const isfirst = index === 0
     const isLast = index === this.elements.galleryItem.length - 1
 
-    this.elements.buttonArrowLeft.classList.remove('gallery__button--arrowDisable')
-    this.elements.buttonArrowRight.classList.remove('gallery__button--arrowDisable')
+    this.elements.buttonArrowLeft.classList.remove(Gallery.state.arrowDisable)
+    this.elements.buttonArrowRight.classList.remove(Gallery.state.arrowDisable)
 
     if (isfirst) {
-      this.elements.buttonArrowLeft.classList.add('gallery__button--arrowDisable')
+      this.elements.buttonArrowLeft.classList.add(Gallery.state.arrowDisable)
     }
     if (isLast) {
-      this.elements.buttonArrowRight.classList.add('gallery__button--arrowDisable')
+      this.elements.buttonArrowRight.classList.add(Gallery.state.arrowDisable)
     }
   }
 
@@ -130,7 +132,7 @@ export class Gallery {
     }
   }
 
-  keydownHandler (key) {
+  keydownHandler ({key}) {
     switch (key) {
       case 'ArrowLeft': this.goPrevious()
         break
