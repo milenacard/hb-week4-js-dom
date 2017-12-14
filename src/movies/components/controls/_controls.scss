@@ -25,18 +25,21 @@
 		right: 0;
 		top: 0;
 		display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 	}
 
 	&__button-item{
 		list-style-type: none;
+		margin: 10px;
 	}
 
 	&__button-category{
 		background-color: white;
 		font-size: 20px;
+		height: 40px;
 		width: 100px;
+		border-radius: 5%;
 		cursor: pointer;
 	}
 }
