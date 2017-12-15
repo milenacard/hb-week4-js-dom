@@ -74,6 +74,7 @@ export class Gallery {
 
     const dotsHTML = Array.from(Array(this.elements.galleryItem.length)).map(dotHTML).join('')
     this.elements.dotContainer.innerHTML = dotsHTML
+    console.log(this.elements.dotContainer)
     this.elements.dot = this.elements.dotContainer.querySelector('.gallery__dot-button')
     this.elements.dot.classList.add(Gallery.state.dotSelected)
     this.elements.dots = document.querySelectorAll('.gallery__dot-button')

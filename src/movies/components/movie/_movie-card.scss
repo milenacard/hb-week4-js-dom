@@ -1,16 +1,57 @@
 .movie{
-	width: 100%;
-	height: 100%;
-	background-color: rgb(153, 27, 69);
-	border: 1px black;
-
-	&__image{
-		display: flex;
-		justify-content: center;
-		padding: 5px;
+	
+	&__list-item{
+		width: 100%;
+		background-color: rgb(153, 27, 69);
+		border: 1px solid black;
+		font-family: 'Oswald', sans-serif;
+		list-style-type: none;
+		position: relative;
 	}
 
-	&__title{
+	&__front{
+
+		&-image{
+			width: 100%;
+			height: 80%;
+		}
+	
+		&-title{
+			text-align: center;
+		}
+	
+		&-category{
+			text-align: center;
+		}
+	}
+	
+	&__info{
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 84%;
+		background-color: rgb(173, 173, 173);
+		font-family: 'Oswald', sans-serif;
+		color: black;
 		text-align: center;
+		padding-top: 50px;
+		opacity: 0;
+		transition: opacity 1s;
+
+		&-description{
+			padding: 10px;
+
+			&-text{
+				margin: 10px;
+				font-family: 'Crimson Text', serif;
+			}
+		}
 	}
+
+	&--selected{
+		.movie__info{
+				opacity: 1;		
+		}
+	}
+
 }
