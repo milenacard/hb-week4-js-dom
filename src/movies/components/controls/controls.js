@@ -1,57 +1,60 @@
+/* Pintar los botones y notificar quien fue clickeado */
 export class Control {
-    constructor (selector, movieCard) {
-        this.movieCard = movieCard
-        this.resetValue = 'Reset'
-        this.listButtons = document.querySelectorAll(selector)
-        console.log(this.listButtons)
+  constructor (selector, movieCard, callback) {
+    this.movieCard = movieCard
+    this.resetValue = 'Reset'
+    this.callback = callback
+    this.listButtons = document.querySelectorAll(selector)
 
-        this.setEvents()
-     }
+    this.setEvents()
+  }
 
-     setEvents () {
-        this.listButtons.forEach(element => {
-            console.log(element)
-            element.addEventListener('click', this.routineFilter.bind(this))
-        })
-     }
+  setEvents () {
+    this.listButtons.forEach(element => {
+      console.log(element)
+      element.addEventListener('click', this.getFilterValue)
+    })
+  }
 
-     routineFilter (event) {
-        const filterValue = this.getFilterValue(event)
-        this.filterList(this.movieCard, filterValue)
-     }
+  getFilterValue (event) {
+    return this.callback(event.target.innerText)
+  }
 
-     getFilterValue (event) {
-        console.log(event)
-        return event.target.innerText
-     }
+  /*
+  routineFilter (event) {
+    const filterValue = this.getFilterValue(event)
+    this.filterList(this.movieCard, filterValue)
+  }
 
-     filterList (movieCard, filterValue) {
-         const movieList = movieCard.getListItem()
-         movieList.forEach(element => {
-             const elementCategory = element.attributes['data-category'].value
-             this.evaluateFilter(elementCategory, filterValue, element)
+  getFilterValue (event) {
+    return event.target.innerText
+  }
 
-         })
-        console.log(movieCard.getListItem())
-     }
+  filterList (movieCard, filterValue) {
+    const movieList = movieCard.getListItem()
+    movieList.forEach(element => {
+      const elementCategory = element.attributes['data-category'].value
+      this.evaluateFilter(elementCategory, filterValue, element)
+    })
+    console.log(movieCard.getListItem())
+  }
 
-     /* Va en el grid */
-     hideElement (element) {
-         element.style.display = 'none'
-     }
+  hideElement (element) {
+    element.style.display = 'none'
+  }
 
-     showElement (element) {
-         element.style.display = 'inline-block'
-     }
-     /* Va en el grid */
+  showElement (element) {
+    element.style.display = 'inline-block'
+  }
 
-     evaluateFilter(elementCategory, filterValue, element) {
-         if(elementCategory === filterValue || this.resetValue === filterValue) {
-             this.showElement(element)
-         }else {
-            this.hideElement(element)
-        }
-     }
+  evaluateFilter (elementCategory, filterValue, element) {
+    if (elementCategory === filterValue || this.resetValue === filterValue) {
+      this.showElement(element)
+    } else {
+      this.hideElement(element)
+    }
+  }
+  */
 }
 
 export default Control
