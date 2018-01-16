@@ -1,18 +1,24 @@
 export class MovieCard {
   constructor (selector) {
-    this.listItem = document.querySelector(selector)
+    this.listItem = document.querySelectorAll(selector)
     console.log(this.listItem)
 
     this.setEvents()
   }
 
   setEvents () {
-    this.listItem.addEventListener('click', this.movieSelected.bind(this))
+    this.listItem.forEach(element => {
+      element.addEventListener('click', this.movieSelected.bind(this))
+    })
   }
 
   movieSelected (event) {
     const clickedElement = event.currentTarget
-    clickedElement.classList.add('movie--selected')
+    clickedElement.classList.toggle('movie--selected')
+  }
+
+  getListItem () {
+    return this.listItem
   }
 }
 
