@@ -1,16 +1,17 @@
 /* mostrar las tarjetas y filtrarlas */
 export class Grid {
-  constructor () {
+  constructor (movieCard) {
+    this.movieCard = movieCard
     this.resetValue = 'Reset'
   }
 
-  filterList (movieCard, filterValue) {
-    const movieList = movieCard.getListItem()
+  filterList (filterValue) {
+    const movieList = this.movieCard.getListItem()
     movieList.forEach(element => {
       const elementCategory = element.attributes['data-category'].value
       this.evaluateFilter(elementCategory, filterValue, element)
     })
-    console.log(movieCard.getListItem())
+    console.log(this.movieCard.getListItem())
   }
 
   hideElement (element) {

@@ -1,12 +1,30 @@
 /* Pintar los botones y notificar quien fue clickeado */
 export class Control {
-  constructor (selector, movieCard, callback) {
-    this.movieCard = movieCard
+  constructor (node, movieData) {
+    this.node = node
+    this.movieData = movieData
     this.resetValue = 'Reset'
-    this.callback = callback
-    this.listButtons = document.querySelectorAll(selector)
+    // this.callback = callback
+    // this.setEvents()
+    this.createControls(this.node)
+  }
 
-    this.setEvents()
+  static get contentStructure () {
+    return {
+      buttons: `<li class="controls__button-item">
+                  <button class="controls__button-category" data-category="{category}">{category}</button>
+                </li>`
+    }
+  }
+
+  createControls (node) {
+    const buttonCategory = this.movieData.map(element => {
+      return Control.contentStructure.buttons
+      .replace('{category}', element.category)
+      .replace('{category}', element.category)
+    })
+    node.innerHTML += buttonCategory.join('')
+    console.log(node)
   }
 
   setEvents () {
@@ -20,7 +38,7 @@ export class Control {
     return this.callback(event.target.innerText)
   }
 
-  /*
+   /*
   routineFilter (event) {
     const filterValue = this.getFilterValue(event)
     this.filterList(this.movieCard, filterValue)

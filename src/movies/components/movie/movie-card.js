@@ -1,11 +1,41 @@
 export class MovieCard {
-  constructor (selector) {
-    this.listItem = document.querySelectorAll(selector)
-    console.log(this.listItem)
-
-    this.setEvents()
+  constructor (node, movieData) {
+    this.node = node
+    this.movieData = movieData
+    this.createControls(node)
+    // this.setEvents()
   }
 
+  static get contentStructure () {
+    return {
+      card: `<li class="movie__list-item" data-category="{category}">
+              <div class="movie__front">
+                <img class="movie__front-image" src={url}>
+                <h1 class="movie__front-title">{title}</h1>
+                <h2 class="movie__front-category">{category}</h2>
+              </div>
+              <div class="movie__info">
+                <h2 class="movie__info-description">Sinopsis:</h2>
+                <h3 class="movie__info-description-text">{description}</h3>
+              </div>
+            </li>`
+    }
+  }
+
+  createControls (node) {
+    const cardPhoto = this.movieData.map(element => {
+      return MovieCard.contentStructure.card
+      .replace('{category}', element.category)
+      .replace('{url}', element.url)
+      .replace('{title}', element.title)
+      .replace('{category}', element.category)
+      .replace('{description}', element.description)
+    })
+    node.innerHTML = cardPhoto.join('')
+    console.log(node)
+  }
+
+  /*
   setEvents () {
     this.listItem.forEach(element => {
       element.addEventListener('click', this.movieSelected.bind(this))
@@ -20,6 +50,7 @@ export class MovieCard {
   getListItem () {
     return this.listItem
   }
+  */
 }
 
 export default MovieCard
