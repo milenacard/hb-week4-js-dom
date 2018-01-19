@@ -5,7 +5,9 @@ import Grid from './components/grid/grid.js'
 
 console.log(MovieData)
 /* eslint-disable */
-const control = new Control(document.querySelector('.controls__button-list'), MovieData)
+const control = new Control(document.querySelector('.controls__button-list'), MovieData, (identifier) => {
+  grid.filterList(identifier)
+})
 const movieList = new MovieCard(document.querySelector('.movie__list'), MovieData)
 const grid = new Grid(movieList)
 /* eslint-enable */

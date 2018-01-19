@@ -1,19 +1,20 @@
 /* Pintar los botones y notificar quien fue clickeado */
 export class Control {
-  constructor (node, movieData) {
+  constructor (node, movieData, callback) {
     this.node = node
     this.movieData = movieData
     this.resetValue = 'Reset'
-    // this.callback = callback
-    // this.setEvents()
+    this.callback = callback
     const arrayCategories = this.getCategories()
-    this.filterCategory(arrayCategories)
+    const arrayfiltered = this.filterCategory(arrayCategories)
+    this.createControls(this.node, arrayfiltered)
+    this.setEvents()
   }
 
   static get contentStructure () {
     return {
       buttons: `<li class="controls__button-item">
-                  <button class="controls__button-category" data-category="{category}">{category}</button>
+                  <button class="controls__button-category">{category}</button>
                 </li>`
     }
   }
@@ -29,22 +30,21 @@ export class Control {
     const arrayFiltered = categoryArray.filter((item, pos, ar) => {
       return ar.indexOf(item) === pos
     })
-    console.log('Category', arrayFiltered)
+    return arrayFiltered
   }
 
-  createControls (node) {
-    const buttonCategory = this.movieData.map(element => {
+  createControls (node, arrayFiltered) {
+    const buttonCategory = arrayFiltered.map(element => {
       return Control.contentStructure.buttons
-      .replace('{category}', element.category)
-      .replace('{category}', element.category)
+      .replace('{category}', element)
     })
     node.innerHTML += buttonCategory.join('')
   }
 
   setEvents () {
-    this.listButtons.forEach(element => {
-      console.log(element)
-      element.addEventListener('click', this.getFilterValue)
+    console.log(this.node.children)
+    Array.from(this.node.children).forEach(el => {
+      el.addEventListener('click', this.getFilterValue.bind(this))
     })
   }
 

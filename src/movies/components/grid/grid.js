@@ -6,12 +6,15 @@ export class Grid {
   }
 
   filterList (filterValue) {
+    console.log(filterValue)
+    /*
     const movieList = this.movieCard.getListItem()
     movieList.forEach(element => {
       const elementCategory = element.attributes['data-category'].value
       this.evaluateFilter(elementCategory, filterValue, element)
     })
     console.log(this.movieCard.getListItem())
+    */
   }
 
   hideElement (element) {
