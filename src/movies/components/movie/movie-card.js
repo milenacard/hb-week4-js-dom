@@ -3,7 +3,7 @@ export class MovieCard {
     this.node = node
     this.movieData = movieData
     this.createControls(node)
-    // this.setEvents()
+    this.setEvents()
   }
 
   static get contentStructure () {
@@ -32,7 +32,19 @@ export class MovieCard {
       .replace('{description}', element.description)
     })
     node.innerHTML = cardPhoto.join('')
-    console.log(node)
+  }
+
+  setEvents () {
+    const listItem = this.node.querySelector('.movie__list-item')
+    listItem.addEventListener('click', this.movieSelected.bind(this))
+  }
+
+  movieSelected (event) {
+    console.log(event.currentTarget)
+    const clickedElement = event.currentTarget
+    if (clickedElement.classList.contains('movie__list-item')) {
+      clickedElement.classList.toggle('movie--selected')
+    }
   }
 
   /*
@@ -45,10 +57,6 @@ export class MovieCard {
   movieSelected (event) {
     const clickedElement = event.currentTarget
     clickedElement.classList.toggle('movie--selected')
-  }
-
-  getListItem () {
-    return this.listItem
   }
   */
 }

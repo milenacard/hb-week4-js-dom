@@ -3,10 +3,12 @@ export class Grid {
   constructor (movieCard) {
     this.movieCard = movieCard
     this.resetValue = 'Reset'
+    console.log(this.movieCard)
   }
 
   filterList (filterValue) {
-    console.log(filterValue)
+    const movieList = this.movieCard.getListItem()
+    console.log(movieList)
     /*
     const movieList = this.movieCard.getListItem()
     movieList.forEach(element => {
