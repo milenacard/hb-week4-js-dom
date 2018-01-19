@@ -6,7 +6,8 @@ export class Control {
     this.resetValue = 'Reset'
     // this.callback = callback
     // this.setEvents()
-    this.filterCategory()
+    const arrayCategories = this.getCategories()
+    this.filterCategory(arrayCategories)
   }
 
   static get contentStructure () {
@@ -17,20 +18,18 @@ export class Control {
     }
   }
 
-  filterCategory () {
+  getCategories () {
     const categoryArray = this.movieData.map(element => {
       return element.category
     })
-    const category = categoryArray.filter(this.checkIfRepeat)
-    console.log('Category', category)
+    return categoryArray
   }
 
-  checkIfRepeat (value, index, ar) {
-    if ((ar.indexOf(value)) === -1) {
-      return true
-    } else {
-      return false
-    }
+  filterCategory (categoryArray) {
+    const arrayFiltered = categoryArray.filter((item, pos, ar) => {
+      return ar.indexOf(item) === pos
+    })
+    console.log('Category', arrayFiltered)
   }
 
   createControls (node) {
