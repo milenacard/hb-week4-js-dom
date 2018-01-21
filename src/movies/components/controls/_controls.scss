@@ -1,7 +1,7 @@
 .controls{
 	width: 100%;
 	height: 150px;
-	background-color: rgb(194, 91, 91);
+	background-color: rgb(55, 35, 165);
 	position: relative;
 	margin: 5px;
 	border: 2px solid #000;
@@ -51,4 +51,17 @@
 			font-weight: bold
 		}
 	}
+
+	@media (max-width: 500px){
+		.controls{
+			.__button-list{
+				display: flex;
+				position: relative;
+			 }
+			 .title{
+				margin-left: 0;
+				margin-top: 0;
+			}
+		}
+		}
 }

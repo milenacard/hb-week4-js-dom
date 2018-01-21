@@ -14,7 +14,7 @@ export default [
   },
 
   {
-    title: 'Independence Day: Resurgence',
+    title: 'Independence Day',
     url: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMjIyMTg5MTg4OV5BMl5BanBnXkFtZTgwMzkzMjY5NzE@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
     category: 'Action',
     description: 'Two decades after the first Independence Day invasion, Earth is faced with a new extra-Solar threat. But will mankind´s new space defenses be enough?'
@@ -23,7 +23,7 @@ export default [
   {
     title: 'Memento',
     url: 'https://images-na.ssl-images-amazon.com/images/M/MV5BZTcyNjk1MjgtOWI3Mi00YzQwLWI5MTktMzY4ZmI2NDAyNzYzXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY1000_CR0,0,681,1000_AL_.jpg',
-    category: ' Mystery',
+    category: 'Mystery',
     description: 'A man juggles searching for his wife´s murderer and keeping his short-term memory loss from being an obstacle.'
   },
 
