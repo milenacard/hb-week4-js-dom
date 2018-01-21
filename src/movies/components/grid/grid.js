@@ -3,20 +3,14 @@ export class Grid {
   constructor (movieCard) {
     this.movieCard = movieCard
     this.resetValue = 'Reset'
-    console.log(this.movieCard)
   }
 
   filterList (filterValue) {
-    const movieList = this.movieCard.getListItem()
-    console.log(movieList)
-    /*
     const movieList = this.movieCard.getListItem()
     movieList.forEach(element => {
       const elementCategory = element.attributes['data-category'].value
       this.evaluateFilter(elementCategory, filterValue, element)
     })
-    console.log(this.movieCard.getListItem())
-    */
   }
 
   hideElement (element) {

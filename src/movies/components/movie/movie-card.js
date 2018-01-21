@@ -2,8 +2,9 @@ export class MovieCard {
   constructor (node, movieData) {
     this.node = node
     this.movieData = movieData
-    this.createControls(node)
+    this.createCard(node)
     this.setEvents()
+    this.getListItem()
   }
 
   static get contentStructure () {
@@ -22,7 +23,7 @@ export class MovieCard {
     }
   }
 
-  createControls (node) {
+  createCard (node) {
     const cardPhoto = this.movieData.map(element => {
       return MovieCard.contentStructure.card
       .replace('{category}', element.category)
@@ -35,30 +36,22 @@ export class MovieCard {
   }
 
   setEvents () {
-    const listItem = this.node.querySelector('.movie__list-item')
-    listItem.addEventListener('click', this.movieSelected.bind(this))
-  }
-
-  movieSelected (event) {
-    console.log(event.currentTarget)
-    const clickedElement = event.currentTarget
-    if (clickedElement.classList.contains('movie__list-item')) {
-      clickedElement.classList.toggle('movie--selected')
-    }
-  }
-
-  /*
-  setEvents () {
-    this.listItem.forEach(element => {
+    const listItem = this.node.querySelectorAll('.movie__list-item')
+    listItem.forEach(element => {
       element.addEventListener('click', this.movieSelected.bind(this))
     })
   }
 
   movieSelected (event) {
     const clickedElement = event.currentTarget
-    clickedElement.classList.toggle('movie--selected')
+    if (clickedElement.classList.contains('movie__list-item')) {
+      clickedElement.classList.toggle('movie--selected')
+    }
   }
-  */
+
+  getListItem () {
+    return this.node.querySelectorAll('.movie__list-item')
+  }
 }
 
 export default MovieCard
