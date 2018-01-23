@@ -3,12 +3,12 @@
 	&__list-item{
 		width: 100%;
 		background-color: rgb(55, 35, 165);
-		border: 1px solid white;
+		border: 3px solid black;
 		font-family: 'Oswald', sans-serif;
 		color: black;
 		list-style-type: none;
 		position: relative;
-		z-index: 1
+		z-index: 1;
 	}
 
 	&__front{
