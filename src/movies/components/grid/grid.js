@@ -14,11 +14,13 @@ export class Grid {
   }
 
   hideElement (element) {
-    element.style.display = 'none'
+    element.classList.remove('movie__list-item--display-inline')
+    element.classList.add('movie__list-item--display-none')
   }
 
   showElement (element) {
-    element.style.display = 'inline-block'
+    element.classList.remove('movie__list-item--display-none')
+    element.classList.add('movie__list-item--display-inline')
   }
 
   evaluateFilter (elementCategory, filterValue, element) {

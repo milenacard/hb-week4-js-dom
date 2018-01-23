@@ -3,10 +3,19 @@
 	display: grid;
 	padding: 10px;
 	grid-template-columns: repeat(4, 1fr);
-	// background-color: rgb(55, 35, 165);
-	background-image: url('https://static.pexels.com/photos/813269/pexels-photo-813269.jpeg');
+	background-color: white;
+	// background-image: url('https://static.pexels.com/photos/813269/pexels-photo-813269.jpeg');
 	grid-gap: 20px;
+
+	&-display-none {
+		display: 'none';
+	}
+
+	&-display-inline {
+		display: inline-block;
+	}
 }
+
 
 @media (max-width: 500px){
 	.movie__lis{

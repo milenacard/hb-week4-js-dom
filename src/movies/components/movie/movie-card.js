@@ -46,13 +46,7 @@ export class MovieCard {
     const clickedElement = event.currentTarget
     if (clickedElement.classList.contains('movie__list-item')) {
       clickedElement.classList.toggle('movie--selected')
-      this.addAnimate()
     }
-  }
-
-  addAnimate () {
-    const el = document.querySelector('.movie__info')
-    el.classList.toggle('fadeInDown')
   }
 
   getListItem () {

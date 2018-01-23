@@ -9,6 +9,14 @@
 		list-style-type: none;
 		position: relative;
 		z-index: 1;
+
+		&--display-none {
+			display: none;
+		}
+	
+		&--display-inline {
+			display: inline-block;
+		}
 	}
 
 	&__front{
