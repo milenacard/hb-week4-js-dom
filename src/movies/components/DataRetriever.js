@@ -1,3 +1,4 @@
+/* global fetch */
 export default class DataRetriever {
   static get (url, callback) {
     fetch(url)

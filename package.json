@@ -6,20 +6,20 @@
   "main": "index.js",
   "scripts": {
     "serve": "http-server -c-1 --silence",
-    "build": "npm-run-all clean lint:** --parallel build:css copy:**",
+    "build": "npm-run-all clean lint:** --parallel build:css build:js copy:**",
     "build:css": "node-sass src/index.scss public/style.css --output-style compressed",
+    "build:js": "webpack",
     "lint": "npm-run-all lint:**",
     "lint:css": "stylelint 'src/**/*.scss' --syntax scss",
     "lint:js": "standard 'src/**/*.js'",
     "watch:html": "onchange 'src/**/*.html' -- npm run copy:html",
     "watch:css": "npm run build:css -- -w --source-map true",
     "watch:js": "onchange 'src/**/*.js' -- npm-run-all lint:js copy:js",
-    "copy:html": "copy 'src/**/*.html' public",
     "copy:js": "copy 'src/**/*.js' public",
+    "copy:html": "copy 'src/**/*.html' public",
     "copy:jpeg": "copy 'src/**/*.jpeg' public",
     "copy:jpg": "copy 'src/**/*.jpg' public",
     "cp:html": "copyfiles -u 1 src/**/*.html public",
-    "cp:js": "copyfiles -u 1 src/**/*.js public",
     "precommit": "npm run lint",
     "clean": "rm -rf public/",
     "start:build": "npm-run-all build serve",
@@ -47,6 +47,7 @@
     "standard": "^10.0.3",
     "stylelint": "^8.3.1",
     "stylelint-config-recommended-scss": "^2.0.0",
-    "stylelint-scss": "^2.1.0"
+    "stylelint-scss": "^2.1.0",
+    "webpack": "^3.10.0"
   }
 }
