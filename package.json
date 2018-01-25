@@ -7,13 +7,11 @@
   "scripts": {
     "serve": "http-server -c-1 --silence",
     "build": "npm-run-all clean lint:** --parallel build:js copy:**",
-    "build:css": "node-sass src/index.scss public/style.css --output-style compressed",
     "build:js": "webpack",
     "lint": "npm-run-all lint:**",
     "lint:css": "stylelint 'src/**/*.scss' --syntax scss",
     "lint:js": "standard 'src/**/*.js'",
     "watch:html": "onchange 'src/**/*.html' -- npm run copy:html",
-    "watch:css": "npm run build:css -- -w --source-map true",
     "watch:js": "onchange 'src/**/*.js' -- npm-run-all lint:js copy:js",
     "copy:js": "copy 'src/**/*.js' public",
     "copy:html": "copy 'src/**/*.html' public",
