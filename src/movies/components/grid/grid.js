@@ -1,25 +1,45 @@
 /* mostrar las tarjetas y filtrarlas */
+import MovieCard from '../movie/movie-card.js'
+
 export class Grid {
-  constructor (movieCard) {
-    this.movieCard = movieCard
+  constructor (node, movieData, callback) {
+    this.node = node
+    this.callback = callback
+    this.movieData = movieData
     this.resetValue = 'Reset'
+    this.movieList = this.buildUI(movieData)
+  }
+
+  buildUI (movieData) {
+    const movieCardList = movieData.map(element => {
+      return new MovieCard(this.node, element, this.callback)
+    })
+    const list = movieCardList.map(element => {
+      this.node.appendChild(element.node)
+      return element.node
+    })
+    return list
   }
 
   filterList (filterValue) {
-    const movieList = this.movieCard.getListItem()
-    movieList.forEach(element => {
+    this.movieList.forEach(element => {
       const elementCategory = element.attributes['data-category'].value
       this.evaluateFilter(elementCategory, filterValue, element)
     })
   }
 
   hideElement (element) {
-    element.classList.remove('movie__list-item--display-inline')
-    element.classList.add('movie__list-item--display-none')
+    element.classList.add('movie__list-item--display-hidden')
+  }
+
+  showElement (element) {
+    element.classList.remove('movie__list-item--display-hidden')
   }
 
   evaluateFilter (elementCategory, filterValue, element) {
-    if (!(elementCategory === filterValue) || !(this.resetValue === filterValue)) {
+    if (elementCategory === filterValue || this.resetValue === filterValue) {
+      this.showElement(element)
+    } else {
       this.hideElement(element)
     }
   }
