@@ -7,6 +7,7 @@ export class MovieCard {
     this.getListItem()
   }
 
+  /*
   static get contentStructure () {
     return {
       card: `<li class="movie__list-item" data-category="{category}">
@@ -52,6 +53,7 @@ export class MovieCard {
   getListItem () {
     return this.node.querySelectorAll('.movie__list-item')
   }
+  */
 }
 
 export default MovieCard

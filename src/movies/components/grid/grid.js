@@ -18,15 +18,8 @@ export class Grid {
     element.classList.add('movie__list-item--display-none')
   }
 
-  showElement (element) {
-    element.classList.remove('movie__list-item--display-none')
-    element.classList.add('movie__list-item--display-inline')
-  }
-
   evaluateFilter (elementCategory, filterValue, element) {
-    if (elementCategory === filterValue || this.resetValue === filterValue) {
-      this.showElement(element)
-    } else {
+    if (!(elementCategory === filterValue) || !(this.resetValue === filterValue)) {
       this.hideElement(element)
     }
   }

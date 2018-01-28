@@ -8,6 +8,7 @@
     "serve": "http-server -c-1 --silence",
     "build": "npm-run-all clean lint:** --parallel build:js copy:**",
     "build:js": "webpack",
+    "build:css": "node-sass src/index.scss public/style.css --output-style compressed",
     "lint": "npm-run-all lint:**",
     "lint:css": "stylelint 'src/**/*.scss' --syntax scss",
     "lint:js": "standard 'src/**/*.js'",
@@ -22,7 +23,7 @@
     "clean": "rm -rf public/",
     "start:build": "npm-run-all build serve",
     "start": "npm-run-all copy:** build:js --parallel watch:** serve",
-    "start:windows": "npm-run-all cp:** build:js --parallel watch:** serve"
+    "start:windows": "npm-run-all cp:** build:css --parallel watch:** serve"
   },
   "repository": {
     "type": "git",
